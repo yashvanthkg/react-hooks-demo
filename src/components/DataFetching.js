@@ -2,25 +2,27 @@ import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 
 function DataFetching() {
-    const [posts, setPosts] = useState([])
+    const [post, setPost] = useState({})
+    const [id, setId] = useState(1)
     useEffect(() => {
-        Axios.get('https://jsonplaceholder.typicode.com/posts')
-        .then(response => {
-            setPosts(response.data)
+        Axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+       .then(response => {
+            setPost(response.data)
         })
         .catch(error => {
             console.log(error);
         })
-        // return () => {
-        //     cleanup
-        // }
-    }, [])
+    }, [id])
     return (
         <div>
+            <input type="text" value={id}
+                onChange={e => setId(e.target.value)}
+            />
+            <div>{post.title}</div>
             <ul>
-                {posts.map(post  => {
+                {/* {posts.map(post  => {
                   return  <li key={post.id}>{post.title}</li>
-                })}
+                })} */}
             </ul>
         </div>
     )
