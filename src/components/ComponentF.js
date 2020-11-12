@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
-import { UserContext } from '../App'
+import { UserContext, ChannelContext } from '../App'
 
 function ComponentF() {
     const user = useContext(UserContext)
+    const channel = useContext(ChannelContext)
     return (
         <div>
-             User context value: {user}
+             User context value: {user}, channel context value : {channel}
         </div>
     )
 }
